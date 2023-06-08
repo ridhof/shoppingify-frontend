@@ -24,7 +24,7 @@ function Navigation() {
               pathname === "/",
           })}
         >
-          <FormatListBulleted />
+          <FormatListBulleted className="text-gray-700" />
         </Link>
       </Tooltip>
       <Tooltip label="history" position="right">
@@ -35,7 +35,7 @@ function Navigation() {
               pathname === "/history",
           })}
         >
-          <Replay />
+          <Replay className="text-gray-700" />
         </Link>
       </Tooltip>
       <Tooltip label="statistics" position="right">
@@ -46,7 +46,7 @@ function Navigation() {
               pathname === "/statistics",
           })}
         >
-          <InsertChartOutlined />
+          <InsertChartOutlined className="text-gray-700" />
         </Link>
       </Tooltip>
     </nav>
