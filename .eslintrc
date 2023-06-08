@@ -1,4 +1,13 @@
 {
   "extends": ["next", "plugin:tailwindcss/recommended", "prettier"],
-  "plugins": ["tailwindcss"]
+  "plugins": ["tailwindcss"],
+  "rules": {
+    "tailwindcss/no-custom-classname": "off"
+  },
+  "settings": {
+    "tailwindcss": {
+      "callees": ["clsx"],
+      "config": "tailwind.config.js"
+    }
+  }
 }

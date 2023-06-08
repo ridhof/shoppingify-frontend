@@ -1,6 +1,8 @@
 import "./globals.css";
 import { Quicksand } from "next/font/google";
 
+import Navigation from "~/components/navigation";
+
 const quicksand = Quicksand({
   subsets: ["latin"],
   weight: ["500", "700"],
@@ -19,7 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={quicksand.variable}>{children}</body>
+      <body className={quicksand.variable}>
+        <Navigation />
+        {children}
+      </body>
     </html>
   );
 }
