@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import {
-  FormatListBulleted,
-  Replay,
-  InsertChartOutlined,
-} from "@mui/icons-material";
+// import { FormatListBulleted, Replay, InsertChart } from "~/components/icons";
+
+import FormatListBulleted from "@material-design-icons/svg/filled/format_list_bulleted.svg";
+import Replay from "@material-design-icons/svg/filled/replay.svg";
+import InsertChart from "@material-design-icons/svg/outlined/insert_chart_outlined.svg";
 
 import Tooltip from "~/components/ui/tooltip";
 
@@ -24,7 +24,7 @@ function Navigation() {
               pathname === "/",
           })}
         >
-          <FormatListBulleted className="text-gray-700" />
+          <FormatListBulleted className="fill-gray-700" />
         </Link>
       </Tooltip>
       <Tooltip label="history" position="right">
@@ -35,7 +35,7 @@ function Navigation() {
               pathname === "/history",
           })}
         >
-          <Replay className="text-gray-700" />
+          <Replay className="fill-gray-700" />
         </Link>
       </Tooltip>
       <Tooltip label="statistics" position="right">
@@ -46,7 +46,7 @@ function Navigation() {
               pathname === "/statistics",
           })}
         >
-          <InsertChartOutlined className="text-gray-700" />
+          <InsertChart className="fill-gray-700" />
         </Link>
       </Tooltip>
     </nav>
