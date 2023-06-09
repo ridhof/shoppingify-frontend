@@ -7,15 +7,11 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
       colors: {
         primary: "#F9A109",
         secondary: "#FFF0DE",
         gray: {
+          100: "#FAFAFE",
           200: "#F2F2F2",
           300: "#BDBDBD",
           400: "#C1C1C4",
@@ -32,5 +28,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-radix")],
+  plugins: [require("@tailwindcss/forms"), require("tailwindcss-radix")],
 };
