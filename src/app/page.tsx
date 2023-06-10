@@ -1,7 +1,7 @@
 import SearchBar from "~/components/search-bar";
-import ShoppingList from "~/components/shopping-list";
+import CategoryList from "~/components/category-list";
 
-const shoppingLists = [
+const categoryLists = [
   {
     category: "Fruit and vegetables",
     items: [
@@ -26,7 +26,7 @@ const shoppingLists = [
   },
 ];
 
-export default function ShoppingLists() {
+export default function Items() {
   return (
     <main className="min-h-screen w-3/4 bg-gray-100 py-9 pl-44">
       <header className=" mb-14 flex justify-between">
@@ -38,8 +38,8 @@ export default function ShoppingLists() {
         </h1>
         <SearchBar />
       </header>
-      {shoppingLists.map((list) => (
-        <ShoppingList key={list.category} {...list} />
+      {categoryLists.map((list) => (
+        <CategoryList key={list.category} {...list} />
       ))}
     </main>
   );
