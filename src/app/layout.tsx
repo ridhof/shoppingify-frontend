@@ -2,6 +2,7 @@ import "./globals.css";
 import { Quicksand } from "next/font/google";
 
 import Navigation from "~/components/navigation";
+import ShoppingList from "~/components/shopping-list";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -25,6 +26,7 @@ export default function RootLayout({
       <body className={quicksand.variable}>
         <Navigation />
         {children}
+        <ShoppingList />
       </body>
     </html>
   );

@@ -2,12 +2,12 @@
 
 import Add from "@material-design-icons/svg/filled/add.svg";
 
-interface ShoppingListProps {
+interface CategoryListProps {
   category: string;
   items: string[];
 }
 
-function ShoppingList({ category, items }: ShoppingListProps) {
+function CategoryList({ category, items }: CategoryListProps) {
   return (
     <section key={category} className="mb-12">
       <h3 className="mb-4 text-lg font-medium">{category}</h3>
@@ -26,4 +26,4 @@ function ShoppingList({ category, items }: ShoppingListProps) {
   );
 }
 
-export default ShoppingList;
+export default CategoryList;
