@@ -5,12 +5,14 @@ import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 interface TooltipProps {
   label: string;
   position: "top" | "right" | "bottom" | "left";
+  offset?: number;
 }
 
 function Tooltip({
   children,
   label,
   position,
+  offset = 0,
 }: PropsWithChildren<TooltipProps>) {
   return (
     <TooltipPrimitive.Provider>
@@ -19,6 +21,7 @@ function Tooltip({
         <TooltipPrimitive.Portal className="bg-gray-700">
           <TooltipPrimitive.Content
             side={position}
+            sideOffset={offset}
             className={clsx(
               "radix-side-top:animate-slide-down-fade",
               "radix-side-right:animate-slide-left-fade",

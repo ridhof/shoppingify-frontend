@@ -17,13 +17,15 @@ function Navigation() {
 
   return (
     <nav className="fixed flex h-full flex-col justify-between py-10">
-      <Image
-        className="mx-auto cursor-pointer"
-        src="/images/logo.svg"
-        alt="Shoppingify Logo"
-        width={40}
-        height={40}
-      />
+      <Tooltip label="menu" position="right" offset={24}>
+        <Image
+          className="mx-auto cursor-pointer"
+          src="/images/logo.svg"
+          alt="Shoppingify Logo"
+          width={40}
+          height={40}
+        />
+      </Tooltip>
       <div className="flex flex-col gap-11">
         <Tooltip label="items" position="right">
           <Link
@@ -59,12 +61,14 @@ function Navigation() {
           </Link>
         </Tooltip>
       </div>
-      <button className="relative mx-auto h-10 w-10 rounded-full bg-primary">
-        <ShoppingCart className="mx-auto fill-white" />
-        <span className="absolute right-0 top-0 -translate-y-1/4 translate-x-1/4 rounded bg-tomato px-2 py-0.5  text-xs text-white">
-          3
-        </span>
-      </button>
+      <Tooltip label="shopping list" position="right" offset={24}>
+        <button className="relative mx-auto h-10 w-10 rounded-full bg-primary">
+          <ShoppingCart className="mx-auto fill-white" />
+          <span className="absolute right-0 top-0 -translate-y-1/4 translate-x-1/4 rounded bg-tomato px-2 py-0.5  text-xs text-white">
+            3
+          </span>
+        </button>
+      </Tooltip>
     </nav>
   );
 }
