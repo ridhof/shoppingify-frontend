@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={quicksand.variable}>
+      <body className={`${quicksand.variable} bg-gray-100`}>
         <Navigation />
         {children}
         <ShoppingList />
