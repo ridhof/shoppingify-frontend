@@ -72,13 +72,13 @@ function ShoppingList() {
           </div>
         </div>
       </div>
-      <footer className="absolute bottom-0 w-full bg-white px-10 py-9">
+      <footer className="absolute bottom-0 w-full bg-gray-100 px-10 py-9">
         <div className="relative w-full">
           <button className="absolute right-0 h-full rounded-xl bg-primary px-6 text-base font-bold text-white">
             Save
           </button>
           <input
-            className="h-16 w-full rounded-xl border-0 px-4 py-5 ring-2 ring-primary placeholder:text-sm placeholder:font-medium placeholder:text-gray-300 focus:ring-2 focus:ring-primary"
+            className="h-16 w-full rounded-xl border-0 bg-white px-4 py-5 ring-2 ring-primary placeholder:text-sm placeholder:font-medium placeholder:text-gray-300 focus:ring-2 focus:ring-primary"
             type="text"
             name="shopping-list"
             placeholder="Enter a name"
