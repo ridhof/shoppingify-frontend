@@ -3,7 +3,8 @@
 import clsx from "clsx";
 
 import ChevronRight from "@material-design-icons/svg/filled/chevron_right.svg";
-import EventNote from "@material-design-icons/svg/filled/event_note.svg";
+
+import CreatedDate from "~/components/created-date";
 
 interface HistoryEntry {
   name: string;
@@ -28,12 +29,7 @@ function HistoryList({ date, items }: HistoryListProps) {
           >
             <div className="text-base font-semibold">{items.name}</div>
             <div className="flex items-center gap-7">
-              <div className="flex items-center gap-3">
-                <EventNote className="fill-gray-400" />
-                <span className="text-xs font-medium text-gray-400">
-                  {items.date}
-                </span>
-              </div>
+              <CreatedDate date={items.date} />
               <div
                 className={clsx(
                   "rounded-lg border-[1px] border-solid px-2 py-1 text-sm font-medium",
