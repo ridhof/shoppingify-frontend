@@ -1,4 +1,5 @@
 import Progress from "~/components/ui/progress";
+import Summary from "~/components/summary";
 
 interface TopProgressPorps {
   name: string;
@@ -45,7 +46,7 @@ export default function Statistics() {
             />
           ))}
         </div>
-        <div className="w-1/3">
+        <div className="mb-16 w-1/3">
           <h2 className="mb-9 text-2xl  font-semibold">Top Categories</h2>
           {topCategories.map(({ name, percentage }) => (
             <TopProgress
@@ -57,6 +58,7 @@ export default function Statistics() {
           ))}
         </div>
       </div>
+      <Summary />
     </main>
   );
 }
