@@ -24,10 +24,10 @@ function HistoryList({ date, items }: HistoryListProps) {
         {items.map((items) => (
           <li
             key={items.name}
-            className="mb-7 flex cursor-pointer justify-between rounded-xl p-5 shadow-[0_2px_12px_2px_rgba(0,0,0,0.05)]"
+            className="mb-7 flex cursor-pointer items-center justify-between rounded-xl p-5 shadow-[0_2px_12px_2px_rgba(0,0,0,0.05)]"
           >
             <div className="text-base font-semibold">{items.name}</div>
-            <div className="flex gap-7">
+            <div className="flex items-center gap-7">
               <div className="flex items-center gap-3">
                 <EventNote className="fill-gray-400" />
                 <span className="text-xs font-medium text-gray-400">
@@ -46,7 +46,6 @@ function HistoryList({ date, items }: HistoryListProps) {
               >
                 {items.status}
               </div>
-
               <ChevronRight className=" fill-primary" />
             </div>
           </li>
