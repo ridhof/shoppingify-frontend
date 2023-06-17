@@ -1,6 +1,7 @@
 "use client";
 
 import clsx from "clsx";
+import Link from "next/link";
 
 import ChevronRight from "@material-design-icons/svg/filled/chevron_right.svg";
 
@@ -21,9 +22,10 @@ function HistoryList({ date, items }: HistoryListProps) {
   return (
     <section className="mb-14">
       <div className="mb-4 text-xs font-semibold">{date}</div>
-      <ol>
+      <div>
         {items.map((items) => (
-          <li
+          <Link
+            href="/history/123"
             key={items.name}
             className="mb-7 flex cursor-pointer items-center justify-between rounded-xl p-5 shadow-[0_2px_12px_2px_rgba(0,0,0,0.05)]"
           >
@@ -44,9 +46,9 @@ function HistoryList({ date, items }: HistoryListProps) {
               </div>
               <ChevronRight className=" fill-primary" />
             </div>
-          </li>
+          </Link>
         ))}
-      </ol>
+      </div>
     </section>
   );
 }
