@@ -1,5 +1,5 @@
-import SearchBar from "~/components/search-bar";
 import CategoryList from "~/components/category-list";
+import SearchBar from "~/components/search-bar";
 
 const categoryLists = [
   {

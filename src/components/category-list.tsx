@@ -15,10 +15,12 @@ function CategoryList({ category, items }: CategoryListProps) {
         {items.map((item) => (
           <div
             key={item}
-            className="flex h-fit justify-between rounded-xl bg-white p-4 text-base font-medium shadow-[0_2px_12px_2px_rgba(0,0,0,0.05)]"
+            className="flex h-fit items-start justify-between rounded-xl bg-white p-4 text-base font-medium shadow-[0_2px_12px_2px_rgba(0,0,0,0.05)]"
           >
             <span>{item}</span>
-            <Add className="fill-gray-400" />
+            <button>
+              <Add className="fill-gray-400" />
+            </button>
           </div>
         ))}
       </div>

@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+
+import Edit from "@material-design-icons/svg/filled/edit.svg";
 
 // @ts-ignore
 import Bottle from "~/../public/images/bottle.svg?url";
@@ -22,9 +26,10 @@ function ShoppingList() {
             Add item
           </button>
         </header>
-        <h2 className="mb-10 text-2xl font-bold text-gray-600">
-          Shopping List
-        </h2>
+        <div className="mb-10 flex items-center justify-between">
+          <h2 className="text-2xl font-bold text-gray-600">Shopping List</h2>
+          <Edit />
+        </div>
         <div className="mb-12">
           <p className="mb-6 text-sm font-medium text-gray-500">
             Fruit and Vegetables
