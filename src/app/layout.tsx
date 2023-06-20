@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Quicksand } from "next/font/google";
 
+import AddItem from "~/components/add-item";
 import Navigation from "~/components/navigation";
 import ShoppingList from "~/components/shopping-list";
 
@@ -26,7 +27,8 @@ export default function RootLayout({
       <body className={`${quicksand.variable} bg-gray-100`}>
         <Navigation />
         {children}
-        <ShoppingList />
+        <AddItem />
+        {/* <ShoppingList /> */}
       </body>
     </html>
   );
