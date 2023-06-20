@@ -2,6 +2,7 @@ import "./globals.css";
 import { Quicksand } from "next/font/google";
 
 import AddItem from "~/components/add-item";
+import ItemDetails from "~/components/item-details";
 import Navigation from "~/components/navigation";
 import ShoppingList from "~/components/shopping-list";
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         <Navigation />
         {children}
         <AddItem />
+        {/* <ItemDetails /> */}
         {/* <ShoppingList /> */}
       </body>
     </html>

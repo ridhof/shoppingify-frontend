@@ -42,6 +42,12 @@ function AddItem() {
           </div>
         </form>
       </div>
+      <div className="absolute bottom-0 flex w-full items-center justify-center gap-5 pb-8">
+        <button className="px-6 py-5 font-bold">cancel</button>
+        <button className="rounded-xl bg-primary px-6 py-5 font-bold text-white">
+          Save
+        </button>
+      </div>
     </section>
   );
 }
