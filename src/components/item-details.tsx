@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import BackNavigation from "./back-navigation";
+import Button from "./ui/button";
 
 function ItemDetails() {
   return (
@@ -35,10 +36,8 @@ function ItemDetails() {
         </div>
       </div>
       <div className="absolute bottom-0 flex w-full items-center justify-center gap-5 pb-8">
-        <button className="px-6 py-5 font-bold">delete</button>
-        <button className="rounded-xl bg-primary px-6 py-5 font-bold text-white">
-          Add to list
-        </button>
+        <Button variant="secondary">delete</Button>
+        <Button variant="primary">Add to list</Button>
       </div>
     </section>
   );

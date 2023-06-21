@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "./ui/button";
 import Combobox from "./form/combobox";
 import Input from "./form/input";
 import TextArea from "./form/text-area";
@@ -44,10 +45,8 @@ function AddItem() {
         </form>
       </div>
       <div className="absolute bottom-0 flex w-full items-center justify-center gap-5 pb-8">
-        <button className="px-6 py-5 font-bold">cancel</button>
-        <button className="rounded-xl bg-primary px-6 py-5 font-bold text-white">
-          Save
-        </button>
+        <Button variant="secondary">cancel</Button>
+        <Button variant="primary">Save</Button>
       </div>
     </section>
   );
