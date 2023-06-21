@@ -1,69 +1,97 @@
 "use client";
 
-import Downshift, { type DownshiftProps } from "downshift";
+import { useState } from "react";
+import { useCombobox } from "downshift";
 import ChevronLeft from "@material-design-icons/svg/filled/chevron_right.svg";
 import Close from "@material-design-icons/svg/filled/close.svg";
+import clsx from "clsx";
 
 type ComboboxProps<T extends { id: number; name: string }> = {
   label: string;
   items: T[];
-} & React.HtmlHTMLAttributes<"input"> &
-  DownshiftProps<T>;
+} & React.HtmlHTMLAttributes<"input">;
 
 /**
  * TODO:
- * 1. implement useCombobox
+ * 1. implement useCombobox (done)
  * 2. register to react-hook-form
  */
 function Combobox<T extends { id: number; name: string }>({
-  id,
   label,
   items,
-  placeholder,
-  ...props
 }: ComboboxProps<T>) {
+  const [inputItems, setInputItems] = useState(items);
+
+  const {
+    isOpen,
+    getToggleButtonProps,
+    getLabelProps,
+    getMenuProps,
+    getInputProps,
+    getItemProps,
+    highlightedIndex,
+    selectedItem,
+  } = useCombobox({
+    items: inputItems,
+    onInputValueChange: ({ inputValue }) => {
+      // TODO: implement react-query
+      setInputItems((items) =>
+        items.filter((item) =>
+          item.name.toLowerCase().includes(inputValue!.toLowerCase()),
+        ),
+      );
+    },
+    itemToString(item) {
+      return item ? item.name : "";
+    },
+  });
+
   return (
-    <Downshift {...props}>
-      {({ getInputProps, getItemProps, isOpen, selectedItem }) => (
-        <div>
-          <div className="relative w-full">
-            <label htmlFor={id} className="mb-1 block text-sm font-medium">
-              {label}
-            </label>
-            <input
-              {...getInputProps({ id, placeholder, isOpen })}
-              className="w-full rounded-xl border-0 px-4 py-5 text-sm font-medium ring-2 ring-gray-300 placeholder:text-sm placeholder:font-medium placeholder:text-gray-300 focus:ring-2 focus:ring-primary"
-            />
-            {selectedItem ? (
-              <button className="absolute right-3 top-[50%]">
-                <Close fill="#828282" />
-              </button>
-            ) : (
-              <button className="absolute right-2 top-[50%]">
-                <ChevronLeft fill="#828282" className="h-14 w-14 rotate-90" />
-              </button>
-            )}
-          </div>
-          {isOpen && (
-            <ol className="mt-3 rounded-xl border-[1px] border-[#E0E0E0] bg-white p-2">
-              {items.map((item, index) => (
-                <li
-                  key={item.id}
-                  {...getItemProps({
-                    item,
-                    index,
-                    isSelected: selectedItem === item,
-                  })}
-                  className="cursor-pointer rounded-xl px-6 py-3 text-lg font-medium text-gray-500 hover:bg-gray-200 hover:text-gray-600"
-                >
-                  {item.name}
-                </li>
-              ))}
-            </ol>
+    <div>
+      <div className="relative w-full">
+        <label className="mb-1 block text-sm font-medium" {...getLabelProps()}>
+          {label}
+        </label>
+        <input
+          {...getInputProps()}
+          className="w-full rounded-xl border-0 px-4 py-5 text-sm font-medium ring-2 ring-gray-300 placeholder:text-sm placeholder:font-medium placeholder:text-gray-300 focus:ring-2 focus:ring-primary"
+        />
+        <div
+          className="absolute right-2 top-[50%] cursor-pointer"
+          {...getToggleButtonProps()}
+        >
+          {isOpen ? (
+            <Close fill="#828282" />
+          ) : (
+            <ChevronLeft fill="#828282" className="rotate-90" />
           )}
         </div>
-      )}
-    </Downshift>
+      </div>
+      <ul
+        className={clsx(
+          { hidden: !isOpen && items.length },
+          "mt-3 max-h-96 overflow-y-auto rounded-xl border-[1px] border-[#E0E0E0] bg-white p-2",
+        )}
+        {...getMenuProps()}
+      >
+        {isOpen &&
+          items.map((item, index) => (
+            <li
+              key={`${item.name}-${index}`}
+              {...getItemProps({ item, index })}
+              className={clsx(
+                {
+                  "bg-gray-100 text-gray-500": highlightedIndex === index,
+                  "bg-gray-200 text-gray-600": selectedItem === item,
+                },
+                "cursor-pointer rounded-xl px-6 py-3 text-lg font-medium text-gray-500 hover:bg-gray-200",
+              )}
+            >
+              {item.name}
+            </li>
+          ))}
+      </ul>
+    </div>
   );
 }
 
