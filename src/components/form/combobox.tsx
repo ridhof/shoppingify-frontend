@@ -49,7 +49,7 @@ function Combobox<T extends { id: number; name: string }>({
                     index,
                     isSelected: selectedItem === item,
                   })}
-                  className="cursor-pointer px-6 py-3 text-lg font-medium text-gray-500 hover:bg-gray-200 hover:text-gray-600"
+                  className="cursor-pointer rounded-xl px-6 py-3 text-lg font-medium text-gray-500 hover:bg-gray-200 hover:text-gray-600"
                 >
                   {item.name}
                 </li>
