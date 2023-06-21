@@ -18,7 +18,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           {...props}
           className="w-full rounded-xl border-0 px-4 py-5 text-sm font-medium ring-2 ring-gray-300 placeholder:text-sm placeholder:font-medium placeholder:text-gray-300 focus:ring-2 focus:ring-primary"
         />
-        {error ?? <div className="font-xs text-tomato">{error}</div>}
+        {error && <p className="mt-1 text-sm font-bold text-tomato">{error}</p>}
       </div>
     );
   },

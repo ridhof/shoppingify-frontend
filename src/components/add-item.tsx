@@ -1,5 +1,9 @@
 "use client";
 
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import Button from "./ui/button";
 import Combobox from "./form/combobox";
 import Input from "./form/input";
@@ -11,33 +15,64 @@ const categories = [
   { id: 3, name: "Beverages" },
 ];
 
+const FormSchema = z.object({
+  name: z.string().min(1, { message: "Name is required" }),
+  note: z.string().optional(),
+  image: z
+    .string()
+    .min(1, { message: "Image is required" })
+    .regex(
+      /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/,
+      { message: "Image URL invalid" },
+    ),
+  // category: z.number(),
+});
+
+type FormInput = z.infer<typeof FormSchema>;
+
 function AddItem() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormInput>({
+    resolver: zodResolver(FormSchema),
+    defaultValues: {
+      name: "",
+      note: "",
+      image: "",
+      // category: 0,
+    },
+  });
+
   return (
     <section className="absolute right-0 top-0 h-screen w-1/5">
       <div className="pl-12 pr-8 pt-11">
         <h1 className="mb-8 text-2xl font-medium">Add a new item</h1>
-        <form>
+        <form onSubmit={handleSubmit((d) => console.log(d))} id="add-item-form">
           <Input
             label="Name"
             type="text"
             id="name"
-            name="name"
             placeholder="Enter a name"
-            error={undefined}
+            {...register("name", { required: true })}
+            error={errors?.name?.message}
           />
           <TextArea
             label=" Note (optional)"
             placeholder="Enter a note"
+            id="note"
+            {...register("note", { required: true })}
             rows={3}
-            error={undefined}
+            error={errors?.note?.message}
           />
           <Input
             label="Image (optional)"
             type="text"
             id="image"
-            name="image"
+            {...register("image", { required: true })}
             placeholder="Enter a url"
-            error={undefined}
+            error={errors?.image?.message}
           />
           <Combobox
             placeholder="Enter a category"
@@ -49,7 +84,9 @@ function AddItem() {
       </div>
       <div className="absolute bottom-0 flex w-full items-center justify-center gap-5 pb-8">
         <Button variant="secondary">cancel</Button>
-        <Button variant="primary">Save</Button>
+        <Button type="submit" form="add-item-form" variant="primary">
+          Save
+        </Button>
       </div>
     </section>
   );
