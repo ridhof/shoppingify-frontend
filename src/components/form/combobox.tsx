@@ -10,6 +10,11 @@ type ComboboxProps<T extends { id: number; name: string }> = {
 } & React.HtmlHTMLAttributes<"input"> &
   DownshiftProps<T>;
 
+/**
+ * TODO:
+ * 1. implement useCombobox
+ * 2. register to react-hook-form
+ */
 function Combobox<T extends { id: number; name: string }>({
   id,
   label,
