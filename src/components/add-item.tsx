@@ -23,11 +23,13 @@ function AddItem() {
             id="name"
             name="name"
             placeholder="Enter a name"
+            error={undefined}
           />
           <TextArea
             label=" Note (optional)"
             placeholder="Enter a note"
             rows={3}
+            error={undefined}
           />
           <Input
             label="Image (optional)"
@@ -35,12 +37,13 @@ function AddItem() {
             id="image"
             name="image"
             placeholder="Enter a url"
+            error={undefined}
           />
           <Combobox
             placeholder="Enter a category"
             label="Category"
-            itemToString={(item) => (item ? item.name : "")}
             items={categories}
+            error={undefined}
           />
         </form>
       </div>

@@ -9,19 +9,19 @@ import clsx from "clsx";
 type ComboboxProps<T extends { id: number; name: string }> = {
   label: string;
   items: T[];
+  error: string | undefined;
 } & React.HtmlHTMLAttributes<"input">;
 
 /**
  * TODO:
  * 1. implement useCombobox (done)
  * 2. register to react-hook-form
+ * 3. integrate to react-query
  */
 function Combobox<T extends { id: number; name: string }>({
   label,
   items,
 }: ComboboxProps<T>) {
-  const [inputItems, setInputItems] = useState(items);
-
   const {
     isOpen,
     getToggleButtonProps,
@@ -32,15 +32,7 @@ function Combobox<T extends { id: number; name: string }>({
     highlightedIndex,
     selectedItem,
   } = useCombobox({
-    items: inputItems,
-    onInputValueChange: ({ inputValue }) => {
-      // TODO: implement react-query
-      setInputItems((items) =>
-        items.filter((item) =>
-          item.name.toLowerCase().includes(inputValue!.toLowerCase()),
-        ),
-      );
-    },
+    items: items,
     itemToString(item) {
       return item ? item.name : "";
     },
