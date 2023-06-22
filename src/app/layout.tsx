@@ -1,10 +1,8 @@
 import "./globals.css";
 import { Quicksand } from "next/font/google";
 
-import AddItem from "~/components/add-item";
-import ItemDetails from "~/components/item-details";
 import Navigation from "~/components/navigation";
-import ShoppingList from "~/components/shopping-list";
+import ListDrawer from "~/components/list-drawer";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -28,9 +26,7 @@ export default function RootLayout({
       <body className={`${quicksand.variable} bg-gray-100`}>
         <Navigation />
         {children}
-        <AddItem />
-        {/* <ItemDetails /> */}
-        {/* <ShoppingList /> */}
+        <ListDrawer />
       </body>
     </html>
   );
