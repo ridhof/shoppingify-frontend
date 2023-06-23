@@ -12,13 +12,13 @@ function ListDrawer() {
 
   if (!isOpen) return null;
 
-  if (listId === 0) {
+  if (listId === "shopping_list") {
     return <ShoppingList />;
   }
-  if (listId === 1) {
+  if (listId === "item_details") {
     return <ItemDetails />;
   }
-  if (listId === 2) {
+  if (listId === "add_item") {
     return <AddItem />;
   }
 }

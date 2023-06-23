@@ -1,13 +1,23 @@
 import Image from "next/image";
+import { useAtom } from "jotai";
+
+import { listDrawerAtom } from "~/atoms";
 
 import BackNavigation from "./back-navigation";
 import Button from "./ui/button";
 
 function ItemDetails() {
+  const [, setListDrawer] = useAtom(listDrawerAtom);
+
   return (
     <section className="absolute right-0 top-0 h-screen w-1/5 overflow-y-scroll">
       <div className="pl-12 pr-8 pt-7">
-        <BackNavigation href="#" />
+        <BackNavigation
+          href="#"
+          onClick={() =>
+            setListDrawer((drawer) => ({ ...drawer, listId: "add_item" }))
+          }
+        />
         <div className="relative mb-14 mt-9 aspect-[3/2] w-full overflow-hidden rounded-3xl">
           <Image
             src="/images/avocado.jpeg"

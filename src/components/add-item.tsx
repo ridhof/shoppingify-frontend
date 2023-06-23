@@ -1,8 +1,11 @@
 "use client";
 
-import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useAtom } from "jotai";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import { listDrawerAtom } from "~/atoms";
 
 import Button from "./ui/button";
 import Combobox from "./form/combobox";
@@ -25,12 +28,14 @@ const FormSchema = z.object({
       /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/,
       { message: "Image URL invalid" },
     ),
-  // category: z.number(),
+  category: z.number(),
 });
 
 type FormInput = z.infer<typeof FormSchema>;
 
 function AddItem() {
+  const [, setListDrawer] = useAtom(listDrawerAtom);
+
   const {
     register,
     handleSubmit,
@@ -41,7 +46,7 @@ function AddItem() {
       name: "",
       note: "",
       image: "",
-      // category: 0,
+      category: 0,
     },
   });
 
@@ -62,7 +67,7 @@ function AddItem() {
             label=" Note (optional)"
             placeholder="Enter a note"
             id="note"
-            {...register("note", { required: true })}
+            {...register("note")}
             rows={3}
             error={errors?.note?.message}
           />
@@ -70,7 +75,7 @@ function AddItem() {
             label="Image (optional)"
             type="text"
             id="image"
-            {...register("image", { required: true })}
+            {...register("image")}
             placeholder="Enter a url"
             error={errors?.image?.message}
           />
@@ -78,12 +83,20 @@ function AddItem() {
             placeholder="Enter a category"
             label="Category"
             items={categories}
-            error={undefined}
+            {...register("category", { required: true })}
+            error={errors?.category?.message}
           />
         </form>
       </div>
       <div className="absolute bottom-0 flex w-full items-center justify-center gap-5 pb-8">
-        <Button variant="secondary">cancel</Button>
+        <Button
+          onClick={() =>
+            setListDrawer((drawer) => ({ ...drawer, listId: "shopping_list" }))
+          }
+          variant="secondary"
+        >
+          cancel
+        </Button>
         <Button type="submit" form="add-item-form" variant="primary">
           Save
         </Button>

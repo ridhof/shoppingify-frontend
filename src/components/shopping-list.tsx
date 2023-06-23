@@ -1,13 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import { useAtom } from "jotai";
 
 import Edit from "@material-design-icons/svg/filled/edit.svg";
 
+import { listDrawerAtom } from "~/atoms";
 // @ts-ignore
 import Bottle from "~/../public/images/bottle.svg?url";
 
 function ShoppingList() {
+  const [, setListDrawer] = useAtom(listDrawerAtom);
+
   return (
     <section className="absolute right-0 top-0 h-screen w-1/5 bg-secondary">
       <div className="pl-12 pr-8 pt-11">
@@ -22,7 +26,10 @@ function ShoppingList() {
           <span className="text-base font-bold leading-5 text-white">
             Didn’t find what you need?
           </span>
-          <button className="w-[120px] rounded-xl bg-white px-7 py-3 text-sm font-bold text-gray-600">
+          <button
+            onClick={() => setListDrawer({ listId: "add_item", isOpen: true })}
+            className="w-[120px] rounded-xl bg-white px-7 py-3 text-sm font-bold text-gray-600"
+          >
             Add item
           </button>
         </header>

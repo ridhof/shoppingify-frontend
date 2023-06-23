@@ -1,7 +1,12 @@
 import { atom } from "jotai";
 
-const listDrawerAtom = atom({
-  listId: 0,
+interface ListDrawer {
+  listId: "shopping_list" | "item_details" | "add_item";
+  isOpen: boolean;
+}
+
+const listDrawerAtom = atom<ListDrawer>({
+  listId: "shopping_list",
   isOpen: true,
 });
 
