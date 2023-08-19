@@ -38,9 +38,9 @@ export default function Items() {
         </h1>
         <SearchBar />
       </header>
-      {categoryLists.map((list) => (
+      {/* {categoryLists.map((list) => (
         <CategoryList key={list.category} {...list} />
-      ))}
+      ))} */}
     </main>
   );
 }
