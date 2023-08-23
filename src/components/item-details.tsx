@@ -15,7 +15,7 @@ function ItemDetails() {
         <BackNavigation
           href="#"
           onClick={() =>
-            setListDrawer((drawer) => ({ ...drawer, listId: "add_item" }))
+            setListDrawer((drawer) => ({ ...drawer, listId: "shopping_list" }))
           }
         />
         <div className="relative mb-14 mt-9 aspect-[3/2] w-full overflow-hidden rounded-3xl">
