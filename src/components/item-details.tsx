@@ -10,7 +10,7 @@ function ItemDetails() {
   const [, setListDrawer] = useAtom(listDrawerAtom);
 
   return (
-    <section className="absolute right-0 top-0 h-screen w-1/5 overflow-y-scroll">
+    <section className="absolute right-0 top-0 h-screen w-1/4 overflow-y-scroll bg-white">
       <div className="pl-12 pr-8 pt-7">
         <BackNavigation
           href="#"

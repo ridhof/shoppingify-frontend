@@ -20,7 +20,7 @@ function Navigation() {
   const [, setListDrawer] = useAtom(listDrawerAtom);
 
   return (
-    <nav className="fixed flex h-full flex-col justify-between py-10">
+    <nav className="fixed flex h-full flex-col justify-between py-10 bg-white">
       <Tooltip label="menu" position="right" offset={24}>
         <Image
           className="mx-auto cursor-pointer"

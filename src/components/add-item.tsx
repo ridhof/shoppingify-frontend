@@ -51,7 +51,7 @@ function AddItem() {
   });
 
   return (
-    <section className="absolute right-0 top-0 h-screen w-1/5">
+    <section className="absolute right-0 top-0 h-screen w-1/4">
       <div className="pl-12 pr-8 pt-11">
         <h1 className="mb-8 text-2xl font-medium">Add a new item</h1>
         <form onSubmit={handleSubmit((d) => console.log(d))} id="add-item-form">

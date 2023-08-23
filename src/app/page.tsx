@@ -28,7 +28,7 @@ const categoryLists = [
 
 export default function Items() {
   return (
-    <main className="min-h-screen w-3/4 bg-gray-100 py-9 pl-44">
+    <main className="min-h-screen w-3/4 bg-gray-100 py-9 px-36">
       <header className=" mb-14 flex justify-between">
         <h1 className="text-2xl font-medium leading-8">
           <span className="font-bold text-primary">Shoppingify</span> allows you

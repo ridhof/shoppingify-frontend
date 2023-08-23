@@ -13,7 +13,7 @@ function ShoppingList() {
   const [, setListDrawer] = useAtom(listDrawerAtom);
 
   return (
-    <section className="absolute right-0 top-0 h-screen w-1/5 bg-secondary">
+    <section className="absolute right-0 top-0 h-screen w-1/4 bg-secondary">
       <div className="pl-12 pr-8 pt-11">
         <header className="relative mb-11 flex flex-col gap-3 rounded-3xl bg-maroon py-4 pl-28">
           <Image
@@ -84,7 +84,7 @@ function ShoppingList() {
           </div>
         </div>
       </div>
-      <footer className="absolute bottom-0 w-full bg-gray-100 px-10 py-9">
+      <footer className="absolute bottom-0 w-full bg-white px-10 py-9">
         <div className="relative w-full">
           <button className="absolute right-0 h-full rounded-xl bg-primary px-6 text-base font-bold text-white">
             Save
