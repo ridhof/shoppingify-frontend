@@ -1,6 +1,8 @@
 "use client";
 
+import Add from "@material-design-icons/svg/filled/add.svg";
 import { useAtom } from "jotai";
+import Image from "next/image";
 
 import { listDrawerAtom } from "~/atoms";
 
@@ -27,6 +29,18 @@ function CategoryList({ category, items }: CategoryListProps) {
               className="flex h-fit items-start justify-between rounded-xl bg-white p-4 text-base font-medium shadow-[0_2px_12px_2px_rgba(0,0,0,0.05)]"
             >
               <span className="text-left">{item}</span>
+              <button
+                // onClick={() => 
+                //   console.log('a')
+                // }
+              >
+                <Image
+                  key={item}
+                  src={Add}
+                  alt="add icon"
+                  className="w-6 h-6 text-black"
+                />
+              </button>
             </div>
           </button>
         ))}

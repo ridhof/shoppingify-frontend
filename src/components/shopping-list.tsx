@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useAtom } from "jotai";
 
+import Add from "@material-design-icons/svg/filled/add.svg";
 import Edit from "@material-design-icons/svg/filled/edit.svg";
 
 import { listDrawerAtom } from "~/atoms";
@@ -36,6 +37,7 @@ function ShoppingList() {
         <div className="mb-10 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-gray-600">Shopping List</h2>
           <Edit />
+          <Add className="hidden" />
         </div>
         <div className="mb-12">
           <p className="mb-6 text-sm font-medium text-gray-500">
