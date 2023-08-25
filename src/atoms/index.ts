@@ -10,4 +10,21 @@ const listDrawerAtom = atom<ListDrawer>({
   isOpen: true,
 });
 
-export { listDrawerAtom };
+interface ItemDetailInterface {
+  imageUrl: string;
+  name: string | null;
+  categoryId: number | null;
+  categoryName: string | null;
+  note: string | null;
+}
+
+const itemDetailAtom = atom<ItemDetailInterface>({
+  imageUrl: "/images/avocado.jpeg",
+  name: null,
+  categoryId: null,
+  categoryName: null,
+  note: null,
+});
+
+export { itemDetailAtom, listDrawerAtom };
+export type { ItemDetailInterface };

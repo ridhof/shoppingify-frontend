@@ -1,13 +1,14 @@
 import Image from "next/image";
 import { useAtom } from "jotai";
 
-import { listDrawerAtom } from "~/atoms";
+import { itemDetailAtom, listDrawerAtom } from "~/atoms";
 
 import BackNavigation from "./back-navigation";
 import Button from "./ui/button";
 
 function ItemDetails() {
   const [, setListDrawer] = useAtom(listDrawerAtom);
+  const [itemDetail] = useAtom(itemDetailAtom);
 
   return (
     <section className="absolute right-0 top-0 h-screen w-1/4 overflow-y-scroll bg-white">
@@ -20,28 +21,24 @@ function ItemDetails() {
         />
         <div className="relative mb-14 mt-9 aspect-[3/2] w-full overflow-hidden rounded-3xl">
           <Image
-            src="/images/avocado.jpeg"
-            alt="avocado"
+            src={itemDetail.imageUrl}
+            alt={itemDetail.name || ""}
             fill
             className="object-cover"
           />
         </div>
         <div className="mb-8">
           <p className="mb-3 text-xs font-medium text-gray-400">name</p>
-          <h2 className="text-2xl font-semibold">Avocado</h2>
+          <h2 className="text-2xl font-medium">{ itemDetail.name }</h2>
         </div>
         <div className="mb-8">
           <p className="mb-3 text-xs font-medium text-gray-400">category</p>
-          <p className="text-lg font-semibold">Avocado</p>
+          <p className="text-lg font-medium">{ itemDetail.categoryName }</p>
         </div>
         <div className="mb-8">
           <p className="mb-3 text-xs font-medium text-gray-400">note</p>
-          <p className="text-lg font-semibold">
-            Nutrient-dense foods are those that provide substantial amounts of
-            vitamins, minerals and other nutrients with relatively few calories.
-            One-third of a medium avocado (50 g) has 80 calories and contributes
-            nearly 20 vitamins and minerals, making it a great nutrient-dense
-            food choice.
+          <p className="text-lg font-medium">
+            { itemDetail.note }
           </p>
         </div>
       </div>
