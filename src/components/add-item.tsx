@@ -3,6 +3,7 @@
 import { z } from "zod";
 import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
+import useSWR from "swr";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { listDrawerAtom } from "~/atoms";
@@ -11,6 +12,7 @@ import Button from "./ui/button";
 import Combobox from "./form/combobox";
 import Input from "./form/input";
 import TextArea from "./form/text-area";
+import { useEffect } from "react";
 
 const categories = [
   { id: 1, name: "Fruit and vegetables" },
@@ -33,8 +35,22 @@ const FormSchema = z.object({
 
 type FormInput = z.infer<typeof FormSchema>;
 
+function useCategorySearch() {
+  const fetcher = (url: string) => fetch(url).then((res) => res.json()); 
+  const { data, error, isLoading } = useSWR("https://pleasant-plum-pinafore.cyclic.cloud/api/kategori/search", fetcher);
+  return {
+    category: data,
+    isLoading,
+    isError: error,
+  };
+}
+
 function AddItem() {
   const [, setListDrawer] = useAtom(listDrawerAtom);
+  const { category, isLoading, isError } = useCategorySearch();
+  useEffect(() => {
+    console.log(category, isLoading, isError);
+  }, [category, isLoading, isError]);
 
   const {
     register,
