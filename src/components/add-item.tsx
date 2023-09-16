@@ -2,23 +2,18 @@
 
 import { z } from "zod";
 import { useAtom } from "jotai";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import useSWR from "swr";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { fetchCategorySearch } from "~/api/category";
 import { listDrawerAtom } from "~/atoms";
+import { SelectOption } from "~/types/primitive";
 
 import Button from "./ui/button";
 import Combobox from "./form/combobox";
 import Input from "./form/input";
 import TextArea from "./form/text-area";
-import { useEffect } from "react";
-
-const categories = [
-  { id: 1, name: "Fruit and vegetables" },
-  { id: 2, name: "Meat and Fish" },
-  { id: 3, name: "Beverages" },
-];
 
 const FormSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -35,21 +30,15 @@ const FormSchema = z.object({
 
 type FormInput = z.infer<typeof FormSchema>;
 
-function useCategorySearch() {
-  const fetcher = (url: string) => fetch(url).then((res) => res.json()); 
-  const { data, error, isLoading } = useSWR("https://pleasant-plum-pinafore.cyclic.cloud/api/kategori/search", fetcher);
-  return {
-    category: data,
-    isLoading,
-    isError: error,
-  };
-}
-
 function AddItem() {
   const [, setListDrawer] = useAtom(listDrawerAtom);
-  const { category, isLoading, isError } = useCategorySearch();
+  const [getCategoryList, setCategoryList] = useState<SelectOption[]>([]);
+  const { category, isLoading, isError } = fetchCategorySearch('');
   useEffect(() => {
-    console.log(category, isLoading, isError);
+    if (!isLoading) {
+      if (isError || !category || !category?.data) setCategoryList([]);
+      else setCategoryList(category?.data?.map((row) => ({ ...row, name: row.namaKategori })));
+    }
   }, [category, isLoading, isError]);
 
   const {
@@ -98,7 +87,7 @@ function AddItem() {
           <Combobox
             placeholder="Enter a category"
             label="Category"
-            items={categories}
+            items={getCategoryList}
             {...register("category", { required: true })}
             error={errors?.category?.message}
           />
