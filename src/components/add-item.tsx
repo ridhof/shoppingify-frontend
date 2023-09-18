@@ -33,7 +33,9 @@ type FormInput = z.infer<typeof FormSchema>;
 function AddItem() {
   const [, setListDrawer] = useAtom(listDrawerAtom);
   const [getCategoryList, setCategoryList] = useState<SelectOption[]>([]);
-  const { category, isLoading, isError } = FetchCategorySearch('');
+  const [getCategoryQuery, setCategoryQuery]= useState("");
+
+  const { category, isLoading, isError } = FetchCategorySearch(getCategoryQuery);
   useEffect(() => {
     if (!isLoading) {
       if (isError || !category || !category?.data) setCategoryList([]);
@@ -90,6 +92,7 @@ function AddItem() {
             items={getCategoryList}
             {...register("category", { required: true })}
             error={errors?.category?.message}
+            onInputChange={(query: string) => setCategoryQuery(query)}
           />
         </form>
       </div>

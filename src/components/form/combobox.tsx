@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useCombobox } from "downshift";
 import ChevronLeft from "@material-design-icons/svg/filled/chevron_right.svg";
 import Close from "@material-design-icons/svg/filled/close.svg";
@@ -10,6 +9,7 @@ type ComboboxProps<T extends { id: number; name: string }> = {
   label: string;
   items: T[];
   error: string | undefined;
+  onInputChange: (query: string) => void;
 } & React.HtmlHTMLAttributes<"input">;
 
 /**
@@ -21,6 +21,7 @@ type ComboboxProps<T extends { id: number; name: string }> = {
 function Combobox<T extends { id: number; name: string }>({
   label,
   items,
+  onInputChange,
 }: ComboboxProps<T>) {
   const {
     isOpen,
@@ -33,6 +34,9 @@ function Combobox<T extends { id: number; name: string }>({
     selectedItem,
   } = useCombobox({
     items: items,
+    onInputValueChange({inputValue}) {
+      onInputChange(inputValue || "");
+    },
     itemToString(item) {
       return item ? item.name : "";
     },

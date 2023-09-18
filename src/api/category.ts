@@ -4,7 +4,7 @@ import { SearchCategoryResponse } from "~/types/api/category";
 
 function FetchCategorySearch(query: string) {
     const fetcher: Fetcher<SearchCategoryResponse, string> = (url: string) => fetch(url).then((res) => res.json());
-    const { data, error, isLoading } = useSWR(
+    const { data, error, isLoading, mutate } = useSWR(
         `${process.env.API_BASE_URL}/kategori/search?namaKategori=${query}`,
         fetcher,
     );
@@ -12,6 +12,7 @@ function FetchCategorySearch(query: string) {
         category: data,
         isLoading,
         isError: error,
+        mutate,
     };
 }
 
