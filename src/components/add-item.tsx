@@ -2,21 +2,18 @@
 
 import { z } from "zod";
 import { useAtom } from "jotai";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { FetchCategorySearch } from "~/api/category";
 import { listDrawerAtom } from "~/atoms";
+import { SelectOption } from "~/types/primitive";
 
 import Button from "./ui/button";
 import Combobox from "./form/combobox";
 import Input from "./form/input";
 import TextArea from "./form/text-area";
-
-const categories = [
-  { id: 1, name: "Fruit and vegetables" },
-  { id: 2, name: "Meat and Fish" },
-  { id: 3, name: "Beverages" },
-];
 
 const FormSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -35,6 +32,16 @@ type FormInput = z.infer<typeof FormSchema>;
 
 function AddItem() {
   const [, setListDrawer] = useAtom(listDrawerAtom);
+  const [getCategoryList, setCategoryList] = useState<SelectOption[]>([]);
+  const [getCategoryQuery, setCategoryQuery]= useState("");
+
+  const { category, isLoading, isError } = FetchCategorySearch(getCategoryQuery);
+  useEffect(() => {
+    if (!isLoading) {
+      if (isError || !category || !category?.data) setCategoryList([]);
+      else setCategoryList(category?.data?.map((row) => ({ ...row, name: row.namaKategori })));
+    }
+  }, [category, isLoading, isError]);
 
   const {
     register,
@@ -82,9 +89,10 @@ function AddItem() {
           <Combobox
             placeholder="Enter a category"
             label="Category"
-            items={categories}
+            items={getCategoryList}
             {...register("category", { required: true })}
             error={errors?.category?.message}
+            onInputChange={(query: string) => setCategoryQuery(query)}
           />
         </form>
       </div>
