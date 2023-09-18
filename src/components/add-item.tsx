@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { fetchCategorySearch } from "~/api/category";
+import { FetchCategorySearch } from "~/api/category";
 import { listDrawerAtom } from "~/atoms";
 import { SelectOption } from "~/types/primitive";
 
@@ -33,7 +33,7 @@ type FormInput = z.infer<typeof FormSchema>;
 function AddItem() {
   const [, setListDrawer] = useAtom(listDrawerAtom);
   const [getCategoryList, setCategoryList] = useState<SelectOption[]>([]);
-  const { category, isLoading, isError } = fetchCategorySearch('');
+  const { category, isLoading, isError } = FetchCategorySearch('');
   useEffect(() => {
     if (!isLoading) {
       if (isError || !category || !category?.data) setCategoryList([]);
